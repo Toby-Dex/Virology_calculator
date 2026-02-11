@@ -156,6 +156,11 @@ if st.button("Calculate PFU/mL", type="primary"):
     st.markdown(f"### Viral Titer")
     st.markdown(f"<h2 style='color: #006400; margin-top: -10px;'>{titer_display}</h2>", unsafe_allow_html=True)
     
+    # Copy button for titer
+    if st.button("📋 Copy Titer", key="copy_titer"):
+        st.code(titer_display, language=None)
+        st.success("✓ Copied! Use Ctrl+C to copy from the box above")
+    
     # Methods section
     st.header("Methods Section")
     
@@ -169,9 +174,19 @@ if st.button("Calculate PFU/mL", type="primary"):
     # Build comprehensive methods paragraph
     replicate_text = "in duplicate" if replicates == 2 else "in triplicate" if replicates == 3 else f"with {replicates} replicates" if replicates > 1 else ""
     
-    methods_text = f"""Viral titers were determined by plaque assay on {cell_line} cells. Confluent cell monolayers in {plate_type}s were prepared 24 hours prior to infection. Serial 10-fold dilutions of virus stocks were prepared in infection medium, and {volume:.0f} µL of each dilution was inoculated onto the cells {replicate_text}. After 1 hour adsorption at 37°C with 5% CO₂, the inoculum was removed and cells were overlaid with {overlay_type.lower()}. Plates were incubated at 37°C with 5% CO₂ for {incubation_days} days ({incubation_hours} hours). Following incubation, cells were fixed with 4% formaldehyde and stained with 0.1% crystal violet to visualize plaques. Plaques from the 10⁻{exponent} dilution were manually counted ({plaques} plaques{'per well, averaged across replicates' if replicates > 1 else ''}), and viral titers were calculated as {titer_display}."""
+    methods_text = f"""Viral titers were determined by plaque assay on {cell_line} cells. Confluent cell monolayers in {plate_type}s were prepared 24 hours prior to infection. Serial 10-fold dilutions of virus stocks were prepared in infection medium, and {volume:.0f} µL of each dilution was inoculated onto the cells {replicate_text}. After 1 hour adsorption at 37°C with 5% CO₂, the inoculum was removed and cells were overlaid with {overlay_type.lower()}. Plates were incubated at 37°C with 5% CO₂ for {incubation_days} days ({incubation_hours} hours). Following incubation, cells were fixed with 4% formaldehyde and stained with 0.1% crystal violet to visualize plaques. Plaques from the 10⁻{exponent} dilution were manually counted ({plaques} plaques{' per well, averaged across replicates' if replicates > 1 else ''}), and viral titers were calculated as {titer_display}."""
     
-    st.text_area("Copy for your methods:", methods_text, height=200)
+    st.text_area("Copy for your methods:", methods_text, height=200, key="methods_text_area")
+    
+    # Add a copy button that shows the text in a copyable format
+    col_copy1, col_copy2 = st.columns([1, 5])
+    with col_copy1:
+        if st.button("📋 Copy Methods", key="copy_methods"):
+            st.session_state.show_methods_copy = True
+    
+    if st.session_state.get("show_methods_copy", False):
+        st.info("✓ Select all text below (Ctrl+A) and copy (Ctrl+C)")
+        st.code(methods_text, language=None)
     
 # Footer
 st.markdown("---")
