@@ -1,22 +1,56 @@
-# Virology Calculator
+# 🦠 Viral Titer Calculator
 
-A Streamlit web application for calculating viral titers from plaque assays with automatic countability checks and methods section generation.
+A comprehensive Streamlit web application for virology researchers to calculate viral titer and plan experiments well.
+
+## Live Demo
+**Try it here:** [Viral Titer Calculator](https://titer-my-virus.streamlit.app/)
+
+---
 
 ## Features
 
-- **Quick PFU/mL Calculation**: Automatically calculates plaque-forming units per milliliter (mL)
-- **Countability Warnings**: Alerts when plaque counts fall outside the optimal range (30-300)
-- **Auto-generated Methods Section**: Creates ready-to-use text for your manuscripts
-- **User-friendly Interface**: Clean, intuitive design for daily lab use
-- **Error Prevention**: Eliminates manual arithmetic errors in titer calculations
+### PFU Titer Calculator
+- **Quick PFU/mL Calculation**: Automatically calculates plaque-forming units per milliliter
+- **Countability Warnings**: Alerts when plaque counts fall outside optimal range (30-300)
+- **Customizable Experimental Details**: Cell line, incubation time, plate type, overlay medium
+- **Auto-generated Methods Section**
+- **PDF Report Generation**: Download professional reports with all calculation details
 
-## Why Use This Calculator?
+### Stock Dilution Calculator
+- **Reverse Calculator**: Calculate volume needed to achieve target PFU amount
+- **Smart Dilution Suggestions**: Recommendations for pipetting accuracy
+- **Practical Tips**: Guidance for small or large volume handling
+- **Detailed Calculations**: Step-by-step breakdown of all computations
 
-Virology labs performing plaque assays will benefit from:
-- Fast calculation of viral titers & elimination of arithmetic errors
-- Standardized reporting across experiments
-- Time saved on every single assay
-- Consistent methods documentation
+### TCID50 Calculator
+- **Reed-Muench Method**: Most common TCID50 calculation method
+- **Spearman-Karber Method**: Alternative method for incomplete data
+- **Dynamic Dilution Input**: Flexible table for any number of dilutions (3-10)
+- **Automatic Validation**: Checks for proper 50% endpoint transitions
+- **TCID50 to PFU Conversion**: Approximate PFU equivalent (0.7 conversion factor)
+- **Data Summary Tables**: Clear presentation of dilution series data
+
+###  Additional Features
+- **🌙 Dark Mode**: Toggle between light and dark themes
+- **📈 Calculation History**: Automatic tracking of all calculations with timestamps
+- **📥 CSV Export**: Download complete calculation history
+- **📄 PDF Reports**: Generate professional reports for all calculator types
+- **💾 Session Persistence**: Maintains history during active session
+
+---
+
+##  Why Use This Toolkit?
+
+Virology labs will benefit from:
+-  **Elimination of arithmetic errors** in titer calculations
+-  **Standardized reporting** across experiments and researchers
+-  **Time savings** on every single assay
+-  **Consistent methods documentation** for publications
+-  **Experiment planning** with reverse calculators
+-  **Professional reports** with one-click PDF generation
+-  **Calculation tracking** for lab notebooks and records
+
+---
 
 ## Installation
 
@@ -24,103 +58,202 @@ Virology labs performing plaque assays will benefit from:
 - Python 3.7 or higher
 - pip (Python package manager)
 
-### Setup
+### Local Setup
 
-1. Clone this repository:
+1. **Clone this repository:**
 ```bash
-git clone https://github.com/yourusername/pfu-calculator.git
-cd pfu-calculator
+git clone https://github.com/Toby-Dex/virology_calculator.git
+cd virology_calculator
 ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
-
-1. Run the Streamlit app:
+3. **Run the app:**
 ```bash
 streamlit run app.py
 ```
 
-2. The app will open in your default web browser (typically at `http://localhost:8501`)
+4. The app will open in your default web browser at `http://localhost:8501`
 
-3. Enter your data:
-   - **Plaques Counted**: Count your plaques after fixing and staining your plate
-   - **Dilution Factor**: The dilution used (e.g., 10⁶ = 1000000). Make sure to Label your plate!
-   - **Volume Plated**: Volume of inoculum in microliters (µL)
+---
 
-4. Click **Calculate PFU/mL** to get your results
+## Usage
 
-5. Copy the auto-generated methods section for your manuscript
+### PFU Titer Calculator
+
+1. Navigate to the ** PFU Calculator** tab
+2. Enter your assay data:
+   - **Plaques Counted**: Number of plaques on your plate
+   - **Dilution Factor**: Select from dropdown (10⁻¹ to 10⁻⁹)
+   - **Volume Plated**: Volume in microliters (µL)
+3. Fill in experimental details for methods section
+4. Click **Calculate PFU/mL**
+5. View results, copy titer, or download PDF report
+
+**Example:**
+- Input: 50 plaques, 10⁻⁶ dilution, 100 µL volume
+- Output: **5.00 × 10⁸ PFU/mL**  Optimal plaque count
+
+### Stock Dilution Calculator
+
+1. Navigate to the ** Reverse Calculator** tab
+2. Enter known values:
+   - **Stock Titer**: Your virus stock concentration
+   - **Target PFU**: Desired amount of virus
+3. Click **Calculate Volume Needed**
+4. Get volume recommendations and dilution suggestions
+
+**Example:**
+- Stock: 5.0 × 10⁸ PFU/mL
+- Target: 1.0 × 10⁶ PFU
+- Result: **2.00 µL** needed
+
+### TCID50 Calculator
+
+1. Navigate to the ** TCID50 Calculator** tab
+2. Select calculation method (Reed-Muench or Spearman-Karber)
+3. Enter number of dilutions tested
+4. Fill in dilution series data:
+   - Dilution factor for each row
+   - Positive wells and total wells
+5. Click **Calculate TCID50**
+6. View TCID50/mL result and PFU equivalent
+7. Download PDF report with complete data table
+
+---
 
 ## How It Works
 
-The calculator uses the standard plaque assay formula:
-
+### PFU Calculation Formula
 ```
 PFU/mL = (Plaques Counted × Dilution Factor) / Volume Plated (mL)
 ```
 
 ### Countability Guidelines
-
 - **Optimal Range**: 30-300 plaques
-- **<30 plaques**: May lack statistical reliability (warning displayed)
-- **>300 plaques**: Plate may be too confluent for accurate counting (warning displayed)
+- **<30 plaques**: May lack statistical reliability
+- **>300 plaques**: Plate may be too confluent for accurate counting
 
-## Example Calculation
+### TCID50 Calculation
 
-**Input:**
-- Plaques Counted: 50
-- Dilution Factor: 1,000,000 (10⁻⁶)
-- Volume Plated: 100 µL
+**Reed-Muench Method:**
+- Finds dilutions above and below 50% positive
+- Calculates proportionate distance between them
+- Determines TCID50 endpoint
 
-**Output:**
-- Titer: 5.00 × 10⁸ PFU/mL
-- Status: ✅ Optimal plaque count
+**Spearman-Karber Method:**
+```
+TCID50 = 10^(x₀ - d(S - 0.5))
+```
+Where: x₀ = lowest dilution, d = dilution factor, S = sum of proportions
+
+---
+
+## Features in Detail
+
+### Dark Mode
+- Toggle in sidebar for comfortable viewing
+- Persists during session
+- Optimized for long calculation sessions
+
+### Calculation History
+- **Automatic Tracking**: All calculations saved with timestamps
+- **Export to CSV**: Download complete history for lab records
+- **Recent View**: Quick access to last 5 calculations
+- **Clear Option**: Reset history when needed
+
+### PDF Reports
+- **Professional Formatting**: Publication-quality layout
+- **Complete Data**: All inputs and parameters included
+- **Methods Section**: Ready for manuscript submission
+- **Timestamped**: Date and time of calculation
+
+---
 
 ## Contributing
 
-Contributions are welcome! If you have suggestions for improvements or find bugs, please:
+Contributions are welcome! If you have suggestions or find bugs:
+
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## Future Enhancements
+---
 
-Planned features include:
-- Replicate averaging (multiple wells at same dilution)
-- Calculation history with export functionality
-- Support for TCID50 calculations
-- Mobile-responsive design improvements
+## 📄 License
 
-## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+---
 
-## Author
+## 👤 Author
 
 **Tobi Lawal**
 - Research Specialist, Emory University
-- Emory email: [Tlawal5@emory.edu]
-- Personal email: [Tobilawal091@gmail.com]
-- LinkedIn: [www.linkedin.com/in/lawal-tobi-m-s-3247ab227]
+- Emory Email: [Tlawal5@emory.edu](mailto:Tlawal5@emory.edu)
+- Personal Email: [Tobilawal091@gmail.com](mailto:Tobilawal091@gmail.com)
+- LinkedIn: [Lawal Tobi](https://www.linkedin.com/in/lawal-tobi-m-s-3247ab227)
+- GitHub: [@Toby-Dex](https://github.com/Toby-Dex)
+
+---
 
 ## Acknowledgments
 
-Developed to streamline virology workflows and improve reproducibility in viral titer calculations.
+Developed to streamline virology workflows and improve reproducibility in viral titer calculations. Special thanks to the virology research community for feedback and feature suggestions.
+
+---
 
 ## Citation
 
 If you use this tool in your research, please cite:
+
+```bibtex
+@software{lawal2025virology,
+  author = {Lawal, Tobi A.},
+  title = {Viral Titer Toolkit},
+  year = {2025},
+  publisher = {GitHub},
+  url = {https://github.com/Toby-Dex/virology_calculator}
+}
 ```
-Lawal, T.A (2026). PFU Titer Calculator. GitHub repository. 
-https://github.com/Toby-Dex/pfu-calculator
+
+Or in text:
+```
+Lawal, T.A. (2025). Viral Titer Toolkit. 
+GitHub repository: https://github.com/Toby-Dex/virology_calculator
 ```
 
 ---
 
-*Built with Streamlit | Made for virologists, by a virology enthusiast*
+## Built With
+
+- [Streamlit](https://streamlit.io/) - Web application framework
+- [Python](https://www.python.org/) - Programming language
+- [Pandas](https://pandas.pydata.org/) - Data manipulation
+- [ReportLab](https://www.reportlab.com/) - PDF generation
+
+---
+
+## Bug Reports & Feature Requests
+
+Found a bug or have a feature idea? Please [open an issue](https://github.com/Toby-Dex/virology_calculator/issues) on GitHub.
+
+---
+
+## Show Your Support
+
+If this tool helped your research, please:
+- ⭐ Star this repository
+- 🔀 Fork it for your own modifications
+- 📢 Share it with your lab and colleagues
+- 📝 Cite it in your publications
+
+---
+
+
+
