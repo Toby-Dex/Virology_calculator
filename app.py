@@ -3,7 +3,7 @@ import math
 
 # Page config
 st.set_page_config(
-    page_title="Viral Titer Calculator",
+    page_title="Viral Titer Toolkit",
     page_icon="🦠",
     layout="centered"
 )
@@ -13,7 +13,7 @@ st.title("🦠 Viral Titer Toolkit")
 st.markdown("Professional calculators for virology research workflows")
 
 # Create tabs for different calculators
-tab1, tab2, tab3 = st.tabs(["🧮 PFU Calculator", "Stock Titer Dilution Calculator", "🧬 TCID50 Calculator"])
+tab1, tab2, tab3 = st.tabs(["🧮 PFU Calculator", "🔄 Stock Dilution Calculator", "🧬 TCID50 Calculator"])
 
 # ============================================================================
 # TAB 1: PFU TITER CALCULATOR
@@ -206,10 +206,10 @@ with tab1:
             st.code(methods_text, language=None)
 
 # ============================================================================
-# TAB 2: Stock Titer Dilution CALCULATOR
+# TAB 2: STOCK DILUTION CALCULATOR
 # ============================================================================
 with tab2:
-    st.header("Stock Titer Dilution Calculator")
+    st.header("🔄 Stock Dilution Calculator")
     st.markdown("*Plan your experiment: Calculate volume needed to achieve a target PFU amount*")
     
     st.markdown("**Scenario:** You know your stock titer and need to calculate how much volume to use")
@@ -330,4 +330,4 @@ with tab3:
 
 # Footer
 st.markdown("---")
-st.markdown("*Developed for streamlining virology workflows | Created by Tobi Olanipekun*")
+st.markdown("*Developed for streamlining virology workflows | Created by Tobi Lawal*")
