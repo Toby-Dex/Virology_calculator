@@ -3,7 +3,7 @@ import math
 
 # Page config
 st.set_page_config(
-    page_title="Viral Titer Toolkit",
+    page_title="Viral Titer Calculator",
     page_icon="🦠",
     layout="centered"
 )
