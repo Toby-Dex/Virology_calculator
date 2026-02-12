@@ -185,13 +185,13 @@ Contributions are welcome! If you have suggestions or find bugs:
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👤 Author
+##  Author
 
 **Tobi Lawal**
 - Research Specialist, Emory University
@@ -248,10 +248,10 @@ Found a bug or have a feature idea? Please [open an issue](https://github.com/To
 ## Show Your Support
 
 If this tool helped your research, please:
-- ⭐ Star this repository
-- 🔀 Fork it for your own modifications
-- 📢 Share it with your lab and colleagues
-- 📝 Cite it in your publications
+-  Star this repository
+-  Fork it for your own modifications
+-  Share it with your lab and colleagues
+-  Cite it in your publications
 
 ---
 
