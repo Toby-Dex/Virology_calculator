@@ -190,7 +190,7 @@ if st.button("Calculate PFU/mL", type="primary"):
 
 # Stock Titer Dilution Calculator Section
 st.markdown("---")
-st.header("Reverse Calculator")
+st.header("Stock Titer Dilution Calculator")
 st.markdown("*Plan your experiment: Calculate volume needed to achieve a target PFU amount*")
 
 with st.expander("📊 Use Stock Titer Dilution Calculator", expanded=False):
